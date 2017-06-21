@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "team")
-public class Team {
+public class Team extends BaseEntity {
 
     @Column(name = "teamname")
     private String teamName;

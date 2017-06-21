@@ -8,5 +8,5 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "location")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Location {
+public abstract class Location extends BaseEntity {
 }

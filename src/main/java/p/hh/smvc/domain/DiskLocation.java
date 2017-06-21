@@ -10,6 +10,12 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name = "id")
 public class DiskLocation extends Location {
 
+    private static final long serialVersionUID = -7537532137366501041L;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     @Column(name = "original_name")
     private String originalName;
 

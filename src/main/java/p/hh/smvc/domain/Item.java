@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "item")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "item_type", discriminatorType = DiscriminatorType.STRING)
-public abstract class Item {
+public abstract class Item extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "owner_id")

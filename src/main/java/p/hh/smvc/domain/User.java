@@ -6,7 +6,13 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User extends BaseEntity {
+
+    private static final long serialVersionUID = -3512521164157856626L;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     @Column(name = "username")
     String username;
