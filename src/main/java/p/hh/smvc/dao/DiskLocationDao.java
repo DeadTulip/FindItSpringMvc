@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository("diskLocationDao")
 public class DiskLocationDao extends AbstractHibernateDao<DiskLocation> {
-    
+
 }
