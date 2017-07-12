@@ -20,7 +20,7 @@ public class User extends BaseEntity {
     @Column(name = "password")
     String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "team_user",
             joinColumns = { @JoinColumn(name = "user_id", nullable = false) },

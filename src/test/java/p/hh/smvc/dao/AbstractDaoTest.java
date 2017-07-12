@@ -8,5 +8,5 @@ import p.hh.smvc.conf.HibernateTestConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { HibernateTestConfiguration.class })
-public class AbstractDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
+abstract public class AbstractDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 }
