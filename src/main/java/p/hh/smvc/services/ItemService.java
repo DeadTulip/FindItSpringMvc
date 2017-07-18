@@ -7,15 +7,9 @@ import p.hh.smvc.commands.ItemCommand;
 import p.hh.smvc.commands.ItemType;
 import p.hh.smvc.dao.ItemDao;
 import p.hh.smvc.dao.UserDao;
-import p.hh.smvc.domain.DiskItem;
-import p.hh.smvc.domain.Item;
-import p.hh.smvc.domain.PhysicalItem;
-import p.hh.smvc.domain.Team;
+import p.hh.smvc.domain.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -23,10 +17,13 @@ import java.util.stream.Collectors;
 public class ItemService {
 
     @Autowired
-    ItemDao itemDao;
+    private ItemDao itemDao;
 
     @Autowired
-    UserDao userDao;
+    private UserDao userDao;
+
+    @Autowired
+    private UserService userService;
 
     Item createItem(ItemCommand command) {
         Item item = mapCommandToItem(command);
@@ -106,4 +103,5 @@ public class ItemService {
         item.setEventStartTime(command.getEventStart());
         item.setEventEndTime(command.getEventEnd());
     }
+
 }

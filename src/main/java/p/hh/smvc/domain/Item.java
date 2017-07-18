@@ -1,5 +1,7 @@
 package p.hh.smvc.domain;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -11,26 +13,30 @@ import java.util.Set;
 @DiscriminatorColumn(name = "item_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Item extends BaseEntity {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id")
     private Location location;
 
     @Column(name = "name")
     private String name;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "date_created")
     private Date dateCreated;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "date_updated")
     private Date dateUpdated;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "event_start_time")
     private Date eventStartTime;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     @Column(name = "event_end_time")
     private Date eventEndTime;
 
@@ -43,7 +49,7 @@ public abstract class Item extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "team_item",
             joinColumns = { @JoinColumn(name = "item_id", nullable = false) },
@@ -55,6 +61,7 @@ public abstract class Item extends BaseEntity {
     }
 
     public User getOwner() {
+
         return owner;
     }
 

@@ -11,7 +11,7 @@ public class Team extends BaseEntity {
     @Column(name = "teamname")
     private String teamName;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator")
     private User creator;
 
