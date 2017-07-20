@@ -1,5 +1,8 @@
 package p.hh.smvc.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +18,8 @@ public class Team extends BaseEntity {
     @JoinColumn(name = "creator")
     private User creator;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "team_user",
             joinColumns = { @JoinColumn(name = "team_id", nullable = false) },
@@ -23,7 +27,8 @@ public class Team extends BaseEntity {
     )
     private final Set<User> members = new HashSet<>();
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "item_team",
             joinColumns = { @JoinColumn(name = "team_id", nullable = false) },

@@ -61,7 +61,6 @@ public abstract class Item extends BaseEntity {
     }
 
     public User getOwner() {
-
         return owner;
     }
 

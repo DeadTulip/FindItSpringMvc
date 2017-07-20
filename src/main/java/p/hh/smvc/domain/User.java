@@ -24,6 +24,7 @@ public class User extends BaseEntity {
     @Column(name = "password")
     String password;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "team_user",
