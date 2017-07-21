@@ -48,4 +48,9 @@ public class UserService {
     public List<Team> findAllAccessibleTeams(Long userId) {
         return userDao.findAllAccessibleTeamsByUserId(userId);
     }
+
+    public Long createUser(User user) {
+        userDao.create(user);
+        return user.getId();
+    }
 }
