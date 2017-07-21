@@ -2,6 +2,8 @@ package p.hh.smvc.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import p.hh.smvc.commands.BaseEntitySerializer;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,6 +16,7 @@ public class Team extends BaseEntity {
     @Column(name = "teamname")
     private String teamName;
 
+    @JsonSerialize(using = BaseEntitySerializer.class)
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator")
     private User creator;

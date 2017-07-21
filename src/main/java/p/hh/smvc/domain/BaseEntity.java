@@ -1,5 +1,7 @@
 package p.hh.smvc.domain;
 
+import org.hibernate.proxy.HibernateProxy;
+
 import javax.persistence.*;
 import java.io.Serializable;
 

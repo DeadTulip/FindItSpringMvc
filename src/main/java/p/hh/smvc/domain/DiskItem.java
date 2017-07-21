@@ -1,5 +1,7 @@
 package p.hh.smvc.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
