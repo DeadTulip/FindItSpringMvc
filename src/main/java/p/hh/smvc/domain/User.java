@@ -20,7 +20,7 @@ public class User extends BaseEntity {
     @Column(name = "username")
     String username;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password")
     String password;
 
