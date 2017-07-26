@@ -31,4 +31,9 @@ public class TeamService {
     public List<Item> findAllSharedItems(Long teamId) {
         return teamDao.findAllSharedItemsByTeamId(teamId);
     }
+
+    public Long createTeam(Team team) {
+        teamDao.create(team);
+        return team.getId();
+    }
 }

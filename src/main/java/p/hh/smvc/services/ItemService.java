@@ -104,4 +104,8 @@ public class ItemService {
         item.setEventEndTime(command.getEventEnd());
     }
 
+    public Long createItem(Item item) {
+        itemDao.create(item);
+        return item.getId();
+    }
 }

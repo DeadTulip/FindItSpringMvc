@@ -1,6 +1,7 @@
 package p.hh.smvc.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import p.hh.smvc.domain.Item;
@@ -8,7 +9,6 @@ import p.hh.smvc.domain.Team;
 import p.hh.smvc.domain.User;
 import p.hh.smvc.services.UserService;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,26 +26,27 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{userId}/createdItems")
-    public List<Item> createdItems(@PathVariable Long userId) {
+    public Item[] createdItems(@PathVariable Long userId) {
         List<Item> items = userService.findAllCreatedItems(userId);
-        return items;
+        return items.stream().toArray(Item[]::new);
     }
 
     @RequestMapping(value = "/{userId}/accessibleItems")
-    public List<Item> accessibleItems(@PathVariable Long userId) {
+    public Item[] accessibleItems(@PathVariable Long userId) {
         List<Item> items = userService.findAllAccessibleItems(userId);
-        return items;
+        return items.stream().toArray(Item[]::new);
     }
 
     @RequestMapping(value = "/{userId}/createdTeams")
-    public List<Team> createdTeams(@PathVariable Long userId) {
+    public Team[] createdTeams(@PathVariable Long userId) {
         List<Team> teams = userService.findAllCreatedTeams(userId);
-        return teams;
+        return teams.stream().toArray(Team[]::new);
     }
 
     @RequestMapping(value = "/{userId}/accessibleTeams")
-    public List<Team> accessibleTeams(@PathVariable Long userId) {
+    public Team[] accessibleTeams(@PathVariable Long userId) {
         List<Team> teams = userService.findAllAccessibleTeams(userId);
-        return teams;
+        return teams.stream().toArray(Team[]::new);
     }
+    
 }

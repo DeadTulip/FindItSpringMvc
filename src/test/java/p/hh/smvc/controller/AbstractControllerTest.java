@@ -27,4 +27,5 @@ public abstract class AbstractControllerTest extends AbstractTransactionalJUnit4
     public void setup() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
+
 }

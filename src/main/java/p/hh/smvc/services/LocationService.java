@@ -16,4 +16,9 @@ public class LocationService {
     public Location findById(Long id) {
         return locationDao.findById(id);
     }
+
+    public Long createLocation(Location location) {
+        locationDao.create(location);
+        return location.getId();
+    }
 }
