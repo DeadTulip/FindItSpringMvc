@@ -13,7 +13,7 @@ import javax.servlet.ServletRegistration;
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { AppConfiguration.class };
+        return new Class[] { AppConfiguration.class, SecurityConfiguration.class };
     }
 
     @Override
