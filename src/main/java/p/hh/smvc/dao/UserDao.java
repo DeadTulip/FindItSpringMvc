@@ -31,4 +31,10 @@ public class UserDao extends AbstractHibernateDao<User> {
         query.setParameter("user", findById(userId));
         return query.list();
     }
+
+    public User findByUsername(String username) {
+        Query query = getSession().createQuery("from User where username = :username");
+        query.setParameter("username", username);
+        return (User) query.uniqueResult();
+    }
 }

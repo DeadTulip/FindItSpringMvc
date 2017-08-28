@@ -12,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import p.hh.smvc.conf.AppConfiguration;
+import p.hh.smvc.conf.HibernateTestConfiguration;
 import p.hh.smvc.conf.SecurityConfiguration;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -26,9 +28,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { AppConfiguration.class, SecurityConfiguration.class })
+@ContextConfiguration(classes = { AppConfiguration.class, SecurityConfiguration.class, HibernateTestConfiguration.class})
 @WebAppConfiguration
-public class SecurityTest {
+public class SecurityTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     private static final String X_AUTH_USERNAME = "X-Auth-Username";
     private static final String X_AUTH_PASSWORD = "X-Auth-Password";
@@ -53,8 +55,8 @@ public class SecurityTest {
     public void testUserWithValidCredentials() throws Exception {
         mvc.perform(
                 post("/authenticate")
-                        .header(X_AUTH_USERNAME, "user")
-                        .header(X_AUTH_PASSWORD, "pass"))
+                        .header(X_AUTH_USERNAME, "me")
+                        .header(X_AUTH_PASSWORD, "password"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
@@ -75,8 +77,8 @@ public class SecurityTest {
     public void testUserWithValidToken() throws Exception {
         String responseContent = mvc.perform(
                 post("/authenticate")
-                        .header(X_AUTH_USERNAME, "user")
-                        .header(X_AUTH_PASSWORD, "pass"))
+                        .header(X_AUTH_USERNAME, "me")
+                        .header(X_AUTH_PASSWORD, "password"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
